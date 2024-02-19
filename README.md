@@ -22,7 +22,7 @@ Scripts for a better experience with Epitech MSC intranet
 <img src="pictures/betterCompetencies3.png" height="300px">
 </p>
 
-- [Better Project Files]()
+- [Better Project Files](https://greasyfork.org/en/scripts/487747-fetch-all-project-files)
   - Adds a "Files" section to each project, allowing access to all files without having to go to each page
 
 <p align="center">
