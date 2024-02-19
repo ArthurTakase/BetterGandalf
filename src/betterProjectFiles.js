@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      2024-02-19
 // @description  Rassemble tous les fichiers d'un projet sur la page de ce dernier. Plus besoin d'aller voir chaque lien.
-// @author       You
+// @author       Arthur Decaen
 // @match        https://gandalf.epitech.eu/course/view.php*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none

@@ -28,3 +28,11 @@ Scripts for a better experience with Epitech MSC intranet
 <p align="center">
 <img src="pictures/betterProjectFile.png" width="500px">
 </p>
+
+- [Better Gandalf Interface]()
+  - Removal of elements not required for navigation.
+  - Modernisation of the interface
+
+<p align="center">
+<img src="pictures/betterInterface.png" height="300px">
+</p>

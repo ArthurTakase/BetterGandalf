@@ -2,7 +2,7 @@
 // @name         Better Competencies Gandalf
 // @namespace    http://tampermonkey.net/
 // @version      2024-02-19
-// @description  Rend l'utilisation de l'onglet Compétences de Gandalf plus intuitif
+// @description  Rend l'utilisation de l'onglet Compétences de Gandalf plus intuitive
 // @author       Arthur Decaen
 // @match        https://gandalf.epitech.eu/local/graph/view.php
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=epitech.eu
