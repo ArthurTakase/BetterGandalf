@@ -133,6 +133,10 @@ a[title="Epitech Gandalf Platform"] img {
     margin: 0 !important;
     padding-right: 25px !important;
 }
+
+body {
+    background: #f2f3f5 !important;
+}
     `
 
     var styleSheet = document.createElement("style")
