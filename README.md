@@ -29,7 +29,7 @@ Scripts for a better experience with Epitech MSC intranet
 <img src="pictures/betterProjectFile.png" width="500px">
 </p>
 
-- [Better Gandalf Interface]()
+- [Better Gandalf Interface](https://greasyfork.org/en/scripts/487761-better-gandalf-interface)
   - Removal of elements not required for navigation.
   - Modernisation of the interface
 
