@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Better Competencies Gandalf
 // @namespace    http://tampermonkey.net/
-// @version      2024-02-19
-// @description  Rend l'utilisation de l'onglet Compétences de Gandalf plus intuitive
+// @version      2024-02-20
+// @description  Rend l'utilisation de l'onglet Compétences de Gandalf plus intuitif
 // @author       Arthur Decaen
 // @match        https://gandalf.epitech.eu/local/graph/view.php
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=epitech.eu
@@ -54,19 +54,30 @@ class SubComp
 
     .styleSkill {
         display: grid;
-        grid-template-columns: 4fr 40px 40px;
+        grid-template-columns: 4fr 60px 60px;
         grid-template-rows: 2fr;
         grid-column-gap: 0px;
         grid-row-gap: -1px;
         text-wrap: nowrap;
+        padding-left: 7px;
+        padding-right: 7px;
+        padding-top: 2px;
+        padding-bottom: 2px;
     }
 
-    .styleSkill:nth-child(odd) {
+    .styleSkill:nth-child(even) {
         background: #e9e9e9;
     }
 
+    .styleSkill:nth-child(1) {
+        font-weight: bold;
+        border-bottom: solid 1px;
+        font-style: italic;
+    }
+
     .styleSkillTitle {
-        width: 250px;
+        width: fit-content !important;
+        max-width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
         text-align: left;
@@ -82,7 +93,8 @@ class SubComp
         display: flex;
         justify-content: flex-start;
         gap: 5px;
-        font-size: .8rem;
+        font-size: .9rem;
+        padding-left: 1.5rem;
     }
 
     .info button {
@@ -94,6 +106,15 @@ class SubComp
         text-wrap: nowrap;
         margin: 0;
         padding: 0;
+    }
+
+    .listInfo {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .studentInfo {
+        width: 100%;
     }
     `
 
@@ -196,7 +217,14 @@ class SubComp
     }).join("")
     listInfo.innerHTML += `<div class="content-line">
 <span class="info"><button id="unfinished">Unfinished skills: </button></span>
-<span class="content style">${unfinished}</span>
+<span class="content style">
+    <span class="styleSkill">
+        <span class="styleSkillTitle">Skill name</span>
+        <b style="color: #2bb8b9;">Current</b>
+        <b style="color: blue;">Median</b>
+    </span>
+    ${unfinished}
+</span>
 </div>`
 
     firstSetSubComp()
