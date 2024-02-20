@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Better Gandalf Interface
 // @namespace    http://tampermonkey.net/
-// @version      2024-02-20
-// @description  Removal of elements not required for navigation + Modernisation of the interface + dark theme
+// @version      2024-02-20.1
+// @description  Removal of elements not required for navigation. Modernisation of the interface
 // @author       Arthur Decaen
 // @match        https://gandalf.epitech.eu/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
@@ -238,7 +238,7 @@ ${theme == "light" ? "" :
     .resultGraphs.active {
         background: #232428 !important;
     }
-    .styleSkill:nth-child(odd) {
+    .styleSkill:nth-child(even) {
         background: #383a3f !important;
     }
     .skillProgressContainer {
