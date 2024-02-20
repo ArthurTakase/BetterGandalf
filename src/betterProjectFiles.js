@@ -121,7 +121,7 @@ function addToPage(files, zone) {
     const links = []
     for (var i = 0; i != linksDiv.length; i++) {
         const a = linksDiv[i].getElementsByTagName("a")[0]
-        links.push(a.href)
+        if (a?.href) links.push(a.href)
     }
 
     preparePage()

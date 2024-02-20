@@ -32,7 +32,11 @@ Scripts for a better experience with Epitech MSC intranet
 - [Better Gandalf Interface](https://greasyfork.org/en/scripts/487761-better-gandalf-interface)
   - Removal of elements not required for navigation.
   - Modernisation of the interface
+  - Add a dark theme
+  - Add a button to change theme
 
 <p align="center">
-<img src="pictures/betterInterface.png" height="300px">
+<img src="pictures/betterInterfaceOriginal.png" height="300px">
+<img src="pictures/betterInterfaceWhite.png" height="300px">
+<img src="pictures/betterInterfaceBlack.png" height="300px">
 </p>
