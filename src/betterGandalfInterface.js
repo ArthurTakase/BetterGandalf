@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Better Gandalf Interface
 // @namespace    http://tampermonkey.net/
-// @version      2024-02-20.1
+// @version      2024-03-04
 // @description  Removal of elements not required for navigation. Modernisation of the interface
 // @author       Arthur Decaen
 // @match        https://gandalf.epitech.eu/*
@@ -144,7 +144,7 @@ div.activity-wrapper {
     padding-right: 5px;
 }
 [data-region="empty-message"] {
-   background: ${theme == "light" ? "#ffffff" : "#232428"};
+    background: ${theme == "light" ? "#ffffff" : "#232428"};
 }
 .card.dashboard-card {
     border-radius: 8px;
@@ -282,6 +282,9 @@ ${theme == "light" ? "" :
     .courses .coursebox {
         background: #383a3f !important;
     }
+    .links .linkDiv button img {
+        filter: invert(70%);
+    }
     `
 }
 `
@@ -318,10 +321,7 @@ function switchStyle()
     CURRENT_STYLE_DIV.innerText = styles
     document.head.appendChild(CURRENT_STYLE_DIV)
 
-    console.log(styleState)
-
     const rightNavBar = document.querySelector(".navbar-nav.ml-auto:not(.my-auto)");
-    console.log(rightNavBar)
     rightNavBar.innerHTML += `
     <li class="nav-item mr-1 hbl switchThemeLi">
     <button class="switchTheme" id="switchThemeIcon">${styleState == "light" ? "🌙" : "☀️"}</button>

@@ -24,6 +24,7 @@ Scripts for a better experience with Epitech MSC intranet
 
 - [Better Project Files](https://greasyfork.org/en/scripts/487747-fetch-all-project-files)
   - Adds a "Files" section to each project, allowing access to all files without having to go to each page
+  - Adds option to preview pdf in the browser
 
 <p align="center">
 <img src="pictures/betterProjectFile.png" width="500px">

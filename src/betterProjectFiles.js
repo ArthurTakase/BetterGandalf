@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Fetch all project files
 // @namespace    http://tampermonkey.net/
-// @version      2024-02-19
-// @description  Rassemble tous les fichiers d'un projet sur la page de ce dernier. Plus besoin d'aller voir chaque lien.
+// @version      2024-02-04
+// @description  Rassemble tous les fichiers d'un projet sur la page de ce dernier. Plus besoin d'aller voir chaque lien. Les PDF peuvent également être ouverts dans le navigateur sans les télécharger.
 // @author       Arthur Decaen
 // @match        https://gandalf.epitech.eu/course/view.php*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
@@ -17,6 +17,8 @@ class File {
         this.icon = icon
     }
 }
+
+const PREVIEW_ICON = "https://media.discordapp.net/attachments/513278653254336513/1214329317367226448/image.png?ex=65f8b74e&is=65e6424e&hm=32c1781c087cc782bed9a8acdcb7bf1354cde1331b9d1fd0cb1c446a8b2caebd"
 
 async function fetchSite(url) {
     try {
@@ -62,15 +64,37 @@ function preparePage() {
     return newDiv
 }
 
+function openPreview()
+{
+    const url = this.getAttribute('url')
+
+    fetch(url)
+        .then(response => response.blob())
+        .then(blob => { window.open(URL.createObjectURL(blob), '_blank') })
+        .catch(e => { console.log(e) })
+}
+
 function addToPage(files, zone) {
     const filesDiv = files.map((file) => {
+        const fileType = file.title.split('.').pop().trim().toLowerCase()
+
         return `<div class="links">
         <img src="${file.icon}"></img>
-        <a href="${file.url}" title="${file.title}">${file.title}</a>
+        <div class="linkDiv">
+            <a href="${file.url}" title="${file.title}">${file.title}</a>
+            ${fileType == 'pdf'
+                ? `<button url="${file.url}" title="Open Preview"><img src="${PREVIEW_ICON}"/></button>`
+                : ''}
+        </div>
         <span>${file.date}</span>
         </div>`
     }).join("")
     zone.innerHTML += `${filesDiv}`
+
+    const buttons = zone.querySelectorAll('button')
+    buttons.forEach(button => {
+        button.addEventListener('click', openPreview)
+    })
 }
 
 (function() {
@@ -97,11 +121,15 @@ function addToPage(files, zone) {
         text-wrap: nowrap;
     }
 
+    .links .linkDiv button {
+        border: none;
+    }
+
     .links img {
         width: 20px;
     }
 
-    .links a {
+    .links .linkDiv a {
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -121,7 +149,7 @@ function addToPage(files, zone) {
     const links = []
     for (var i = 0; i != linksDiv.length; i++) {
         const a = linksDiv[i].getElementsByTagName("a")[0]
-        if (a?.href) links.push(a.href)
+        links.push(a.href)
     }
 
     preparePage()
