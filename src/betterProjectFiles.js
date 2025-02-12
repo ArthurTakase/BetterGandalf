@@ -7,6 +7,8 @@
 // @match        https://gandalf.epitech.eu/course/view.php*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
+// @downloadURL https://update.greasyfork.org/scripts/487747/Fetch%20all%20project%20files.user.js
+// @updateURL https://update.greasyfork.org/scripts/487747/Fetch%20all%20project%20files.meta.js
 // ==/UserScript==
 
 class File {
@@ -18,7 +20,7 @@ class File {
     }
 }
 
-const PREVIEW_ICON = "https://media.discordapp.net/attachments/513278653254336513/1214329317367226448/image.png?ex=65f8b74e&is=65e6424e&hm=32c1781c087cc782bed9a8acdcb7bf1354cde1331b9d1fd0cb1c446a8b2caebd"
+const PREVIEW_ICON = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1200px-PDF_file_icon.svg.pngimage.png?ex=65f8b74e&is=65e6424e&hm=32c1781c087cc782bed9a8acdcb7bf1354cde1331b9d1fd0cb1c446a8b2caebd"
 
 async function fetchSite(url) {
     try {
