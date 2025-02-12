@@ -23,14 +23,22 @@ class Competency
         if (Math.abs(this.median - this.progress) <= 2) this.median = this.progress
         this.subComps = []
     }
+
+    GetSubCompsNeeded() {
+        const nbSuccess = this.subComps.filter((subComp) => subComp.status == "success").length
+        if (nbSuccess == 0) return this.subComps.length
+        const valueBySuccess = this.progress / nbSuccess
+        return Math.ceil((100 - this.progress) / valueBySuccess)
+    }
 }
 
 class SubComp
 {
-    constructor(title, status)
+    constructor(title, status, id)
     {
         this.title = title.split(" - ")[1]
         this.status = status
+        this.id = id
 
         switch (this.status) {
             case 'success': this.icon = "proficiencyIcon fa fa-check-circle-o success"; break;
@@ -54,7 +62,7 @@ class SubComp
 
     .styleSkill {
         display: grid;
-        grid-template-columns: 4fr 60px 60px;
+        grid-template-columns: 4fr 60px 60px 40px;
         grid-template-rows: 2fr;
         grid-column-gap: 0px;
         grid-row-gap: -1px;
@@ -84,7 +92,6 @@ class SubComp
     }
 
     .styleSubComp {
-        grid-area: 2 / 1 / 3 / 4;
         display: flex;
         flex-direction: column;
     }
@@ -157,8 +164,10 @@ class SubComp
             const title = status == "unrated"
             ? subComps[j].children[2].innerHTML.replaceAll("\t", "").replaceAll("\n", "")
             : subComps[j].querySelectorAll(".competencyTitle")[0].innerHTML
+            const id = `subcomp-${i}-${j}`
+            subComps[j].id = id
 
-            const subComp = new SubComp(title, status)
+            const subComp = new SubComp(title, status, id)
             comp.subComps.push(subComp)
         }
 
@@ -196,17 +205,20 @@ class SubComp
     const unfinished = competencies.map((comp) => {
         return comp.progress < 100 ? `<span class="styleSkill">
         <span class="styleSkillTitle" title="${comp.title}">${comp.title}</span>
-        <b style="color: #2bb8b9;" title="Ma progression">${comp.progress}%</b>
-        <b style="color: blue;" title="Progression moyenne">${comp.median}%</b>
+        <b style="color: #76c893;" title="Ma progression">${comp.progress}%</b>
+        <b style="color: #34a0a4;" title="Progression moyenne">${comp.median}%</b>
+        <b style="color: #184e77;" title="Compétences restantes">${comp.GetSubCompsNeeded()}</b>
         <span class="styleSubComp">
         ${
         comp.subComps.filter(function(objet) {
-            return objet.status === 'failed';
+            return objet.status !== 'success';
+        }).sort((a, b) => {
+            return a.status === 'failed' ? 1 : -1
         }).map((subComp) => {
             return `
             <span class="styleSubCompChild">
             <span class="${subComp.icon}"></span>
-            <span>${subComp.title}</span>
+            <span onclick="document.getElementById('${subComp.id}').scrollIntoView({ behavior: 'smooth', block: 'center' })">${subComp.title}</span>
             </span>`
         }).join("")
     }
@@ -220,8 +232,9 @@ class SubComp
 <span class="content style">
     <span class="styleSkill">
         <span class="styleSkillTitle">Skill name</span>
-        <b style="color: #2bb8b9;">Current</b>
-        <b style="color: blue;">Median</b>
+        <b style="color: #76c893;">Current</b>
+        <b style="color: #34a0a4;">Median</b>
+        <b style="color: #184e77;">Need</b>
     </span>
     ${unfinished}
 </span>
